@@ -1,0 +1,19 @@
+name: Deploy to GitHub Pages using Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      - name: Build project
+        run: npm run build
+      - name: Deploy to Netlify
+        run: netlify deploy --prod --site=<YOUR_NETLIFY_SITE_ID> --auth=<YOUR_NETLIFY_AUTH_TOKEN>
